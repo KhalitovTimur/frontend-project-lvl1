@@ -1,0 +1,26 @@
+{
+  "name": "@hexlet/code",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "![Actions Status](https://github.com/Timur73/frontend-project-lvl1/workflows/hexlet-check/badge.svg)",
+  "main": "index.js",
+  "bin": {
+    "brain-games": "bin/brain-games.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Timur73/frontend-project-lvl1.git"
+  },
+  "author": "Timur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Timur73/frontend-project-lvl1/issues"
+  },
+  "homepage": "https://github.com/Timur73/frontend-project-lvl1#readme",
+  "dependencies": {
+    "link": "^0.1.5"
+  }
+}
