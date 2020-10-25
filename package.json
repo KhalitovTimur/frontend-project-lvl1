@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/Timur73/frontend-project-lvl1#readme",
   "dependencies": {
-    "link": "^0.1.5"
+    "link": "^0.1.5",
+    "promptly": "^3.1.0",
+    "readline-sync": "^1.4.10"
   }
 }
