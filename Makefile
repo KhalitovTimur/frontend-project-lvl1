@@ -6,3 +6,7 @@ publish:
 	npm publish --dry-run
 cli:
 	node src/cli.js
+lint:
+	npx eslint .
+lint-fix:
+	npx eslint --fix .
