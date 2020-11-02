@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-
-import async from '../src/cli.js';
+import async from '../src/calc.js';
 
 console.log('Welcome to the Brain Games!');
 

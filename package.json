@@ -5,9 +5,10 @@
   "description": "![Actions Status](https://github.com/Timur73/frontend-project-lvl1/workflows/hexlet-check/badge.svg)",
   "main": "index.js",
   "bin": {
-      "brain-games": "bin/brain-games.js",
-      "brain-even": "bin/brain-even.js",
-      "brain-calc": "bin/brain-calc.js"
+    "brain-games": "bin/brain-games.js",
+    "brain-even": "bin/brain-even.js",
+    "brain-calc": "bin/brain-calc.js",
+    "brain-gcd": "bin/brain-gcd.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
