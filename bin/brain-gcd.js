@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import * as mathematics from '../src/nod.js';
+import * as mathematics from '../src/games/nod.js';
 
 console.log('Welcome to the Brain Games!');
 
