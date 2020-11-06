@@ -1,5 +1,6 @@
 import promptly from 'promptly';
 
+
 export default async () => {
   const name = await promptly.prompt('May I have your name?: ');
   console.log(`Hello, ${name}`);
@@ -12,14 +13,19 @@ export default async () => {
     const quest1 = await promptly.prompt(`Question: ${selfRandom1} ${randomElement} ${selfRandom}: `);
     console.log(`Your answer: ${quest1}`);
     let result;
-    if (randomElement === '+') {
+    switch (randomElement) { 
+      case '+' :
       result = Number(selfRandom1) + Number(selfRandom);
       console.log(result);
-    } else if (randomElement === '-') {
+      break;
+      case '-' :
       result = Number(selfRandom1) - Number(selfRandom);
-    } else if (randomElement === '*') {
+      break;
+      case '*' :
       result = Number(selfRandom1) * Number(selfRandom);
-    } console.log(result);
+      console.log(result);
+      default :
+    }
     if (Number(quest1) === result) {
       console.log('Correct!');
     } else if (Number(quest1) !== result) {
