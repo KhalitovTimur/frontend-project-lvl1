@@ -1,6 +1,6 @@
 import promptly from 'promptly';
 
-export const nod1 = (num, num1) => {
+export const calcNod = (num, num1) => {
   let result;
   for (let i = 1; i < 9; i += 1) {
     if (num % i === 0 && num1 % i === 0) {
@@ -10,7 +10,7 @@ export const nod1 = (num, num1) => {
   return result;
 };
 
-export const getNod = async () => {
+export const getGameNod = async () => {
   const name = await promptly.prompt('May I have your name?: ');
   console.log(`Hello, ${name}`);
   console.log('Find the greatest common divisor of given numbers');
@@ -19,7 +19,7 @@ export const getNod = async () => {
     const selfRandom1 = Math.floor(Math.random() * 101);
     const quest1 = await promptly.prompt(`Question: ${selfRandom1} ${selfRandom}: `);
     console.log(`Your answer: ${quest1}`);
-    const res = nod1(selfRandom1, selfRandom);
+    const res = calcNod(selfRandom1, selfRandom);
     if (Number(quest1) === res) {
       console.log('Correct!');
     } else if (Number(quest1) !== res) {

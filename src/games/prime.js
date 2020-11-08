@@ -1,6 +1,6 @@
 import promptly from 'promptly';
 
-export const getPrime = (num) => {
+export const checkPrime = (num) => {
   if (num === 0) {
     return 'no';
   } if (num === 1) {
@@ -24,10 +24,10 @@ export const getGamePrime = async () => {
     const quest1 = await promptly.prompt(`Question: ${selfRandom}: `);
     console.log(`Your answer: ${quest1}`);
     console.log(selfRandom);
-    if (getPrime(selfRandom) === quest1) {
+    if (checkPrime(selfRandom) === quest1) {
       console.log('Correct!');
     } else {
-      console.log(`${quest1} is wrong answer ;(. Correct answer was ${getPrime(selfRandom)}`);
+      console.log(`${quest1} is wrong answer ;(. Correct answer was ${checkPrime(selfRandom)}`);
       console.log(`Let's try again, ${name}`);
       return;
     }
