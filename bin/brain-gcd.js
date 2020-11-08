@@ -3,4 +3,4 @@ import * as mathematics from '../src/games/nod.js';
 
 console.log('Welcome to the Brain Games!');
 
-const nod = mathematics.myFunc();
+const nod = mathematics.getNod();

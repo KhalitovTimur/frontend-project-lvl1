@@ -10,7 +10,7 @@ export const nod1 = (num, num1) => {
   return result;
 };
 
-export const myFunc = async () => {
+export const getNod = async () => {
   const name = await promptly.prompt('May I have your name?: ');
   console.log(`Hello, ${name}`);
   console.log('Find the greatest common divisor of given numbers');
@@ -28,4 +28,5 @@ export const myFunc = async () => {
       return;
     }
   }
+  console.log(`Congratulations, ${name}`);
 };
