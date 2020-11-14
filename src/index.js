@@ -7,5 +7,6 @@ const myGame = async (description, func) => {
   console.log(`Hello, ${name}`);
   console.log(description);
   func();
+  
 };
 export default myGame;
