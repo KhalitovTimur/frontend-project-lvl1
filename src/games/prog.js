@@ -1,9 +1,5 @@
 import promptly from 'promptly';
-
-export function randomInteger(min, max) {
-  const rand = min - 0.5 + Math.random() * (max - min + 1);
-  return Math.round(rand);
-}
+import randomInteger from '../random.js';
 
 export const getProgression = () => {
   const a1 = randomInteger(2, 5);

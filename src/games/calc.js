@@ -1,14 +1,15 @@
 import promptly from 'promptly';
+import randomInteger from '../random.js';
+import myGame from '../index.js';
 
-export default async () => {
-  const name = await promptly.prompt('May I have your name?: ');
-  console.log(`Hello, ${name}`);
-  console.log('What is the result of the expression?');
+const description = 'What is the result of the expression?';
+
+const func = async () => {
   for (let i = 0; i < 3; i += 1) {
     const arr = ['+', '-', '*'];
     const randomElement = arr[Math.floor(Math.random() * arr.length)];
-    const selfRandom = Math.floor(Math.random() * 101);
-    const selfRandom1 = Math.floor(Math.random() * 101);
+    const selfRandom = randomInteger(1, 100);
+    const selfRandom1 = randomInteger(1, 100);
     const quest1 = await promptly.prompt(`Question: ${selfRandom1} ${randomElement} ${selfRandom}: `);
     console.log(`Your answer: ${quest1}`);
     let result;
@@ -35,3 +36,5 @@ export default async () => {
     }
   }
 };
+myGame(description, func);
+export default myGame;
