@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import async from '../games/cli.js';
+import myGame from '../games/cli.js';
 
-async();
+myGame();

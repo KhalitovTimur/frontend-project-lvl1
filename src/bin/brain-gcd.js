@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import * as mathematics from '../games/nod.js';
+import myGame from '../games/nod.js';
 
-mathematics.getGameNod();
+myGame();

@@ -1,43 +1,53 @@
 import promptly from 'promptly';
 import randomInteger from '../random.js';
+import myGame from '../index.js';
 
-export const getProgression = () => {
-  const a1 = randomInteger(2, 5);
-  const d = randomInteger(1, 5);
-  const limit = a1 + 10 * d;
-  const res = [];
-  for (let i = a1; i < limit; i += d) {
-    const str = String(i);
-    const array = str.split(' ');
-    res.push(str);
+const progressionGame = () => {
+  const minNumberForRandomGeneration = 1;
+  const maxNumberForRandomGeneration = 5;
+  const randomNumberFirst = randomInteger(
+    minNumberForRandomGeneration,
+    maxNumberForRandomGeneration,
+  );
+  const randomNumberSecond = randomInteger(
+    minNumberForRandomGeneration,
+    maxNumberForRandomGeneration,
+  );
+  const limit = randomNumberFirst + 10 * randomNumberSecond;
+  const arithmeticProgression = [];
+  for (let i = randomNumberFirst; i < limit; i += randomNumberSecond) {
+    const randomNumberString = String(i);
+    // const array = randomNumberString.split(' ');
+    arithmeticProgression.push(randomNumberString);
   }
-  res.splice(a1, 1, '..');
-  const result = res.join(' ');
-  return result;
+  arithmeticProgression.splice(randomNumberFirst, 1, '..');
+  return arithmeticProgression.join(' ');
 };
-
-export const myFunc = async () => {
-  const name = await promptly.prompt('May I have your name?: ');
-  console.log(`Hello, ${name}`);
-  console.log('What number is missing in the progression?');
+const description = 'What number is missing in the progression?';
+const mindGame = async () => {
   for (let i = 0; i < 3; i += 1) {
-    const fu = getProgression();
-    const quest1 = await promptly.prompt(`Question: ${fu}: `);
-    console.log(`Your answer: ${quest1}`);
-    const res = fu.split(' ');
-    const element = res.indexOf('..');
-    const index = res[element - 1];
-    const index1 = res[element - 2];
-    const result = Number(index) - Number(index1);
-    console.log(result);
-    const item = Number(index) + Number(result);
-    if (Number(quest1) === item) {
-      console.log('Correct!');
-    } else if (Number(quest1) !== item) {
-      console.log(`${quest1} is wrong answer ;(. Correct answer was ${result}`);
-      console.log(`Let's try again, ${name}`);
-      return;
-    }
+    // const fu = getProgression();
+    const answer = await promptly.prompt(`Question: ${progressionGame()}: `);
+    console.log(`Your answer: ${answer}`);
+    const restheLineSplitting = progressionGame().split(' ');
+    const returnsTheIndexOfTheSearchedElement = restheLineSplitting.indexOf(
+      '..',
+    );
+    const firstIndex = restheLineSplitting[returnsTheIndexOfTheSearchedElement - 1];
+    const secondIndex = restheLineSplitting[returnsTheIndexOfTheSearchedElement - 2];
+    const theDifferenceOfIndices = Number(firstIndex) - Number(secondIndex);
+    console.log(theDifferenceOfIndices);
+    const correctAnswer = Number(firstIndex) + Number(theDifferenceOfIndices);
+    // if (Number(answer) === correctAnswer) {
+    //   console.log('Correct!');
+    // } else if (Number(answer) !== correctAnswer) {
+    //   console.log(`${answer} is wrong answer ;(. Correct answer was ${correctAnswer}`);
+    //   console.log(`Let's try again, ${name}`);
+    //   return;
+    // }
   }
   console.log(`Congratulations, ${name}`);
 };
+
+myGame(description, mindGame);
+export default myGame;

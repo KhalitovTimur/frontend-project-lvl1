@@ -1,38 +1,53 @@
 import promptly from 'promptly';
+import randomInteger from '../random.js';
+import myGame from '../index.js';
 
-export default async () => {
-  const name = await promptly.prompt('May I have your name?: ');
-  console.log(`Hello, ${name}`);
-  console.log('Answer "yes" if the number is even, otherwise answer "no"');
 
-  const quest1 = await promptly.prompt('Question: 15: ');
-  switch (quest1) {
-    case 'yes':
+const evenGame = (randomElement) => {
+  if (randomElement % 2 === 0) {
+    return 'yes';
+  } else {
+    return 'no' ;
+  }
+};
+
+const description = 'Answer "yes" if the number is even, otherwise answer "no"';
+
+
+const mindGame = async () => {
+const minNumberForRandomGeneration = 2;
+const maxNumberForRandomGeneration = 20;
+for (let i = 0; i < 3; i ++) {
+  const randomElement = randomInteger(minNumberForRandomGeneration, maxNumberForRandomGeneration);
+  
+  const answer = await promptly.prompt(`Question: ${randomElement}: `);
+  switch (answer) {
+    case evenGame(randomElement) !== answer:
       console.log("'yes' is wrong answer");
       console.log(`Let's try again, ${name}`);
       return;
-    case 'no':
+    case evenGame(randomElement) === answer:
       console.log('Correct!');
       break;
     default:
       console.log(`Let's try again, ${name}`);
       break;
   }
-  const quest2 = await promptly.prompt('Question: 6: ');
-  switch (quest2) {
-    case 'no':
-      console.log("'yes' is wrong answer");
-      console.log(`Let's try again, ${name}`);
-      return;
+  const secondAnswer = await promptly.prompt('Question: 6: ');
+  switch (secondAnswer) {
+  case 'no':
+    console.log("'yes' is wrong answer");
+    console.log(`Let's try again, ${name}`);
+    return;
     case 'yes':
       console.log('Correct!');
-      break;
+    break;
     default:
       console.log(`Let's try again, ${name}`);
       break;
   }
-  const quest3 = await promptly.prompt('Question: 7: ');
-  switch (quest3) {
+  const thirdAnswer = await promptly.prompt('Question: 7: ');
+  switch (thirdAnswer) {
     case 'yes':
       console.log("'yes' is wrong answer");
       console.log(`Let's try again, ${name}`);
@@ -40,9 +55,12 @@ export default async () => {
     case 'no':
       console.log('Correct!');
       console.log(`Congratulations, ${name}!`);
-      break;
+    break;
     default:
       console.log(`Let's try again, ${name}`);
-      break;
+    break;
   }
 };
+
+myGame(description, mindGame);
+export default myGame;

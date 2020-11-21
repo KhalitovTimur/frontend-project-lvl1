@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import * as progression from '../games/prog.js';
+import myGame from '../games/prog.js';
 
-progression.myFunc();
+myGame();

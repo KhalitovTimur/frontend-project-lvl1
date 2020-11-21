@@ -4,37 +4,49 @@ import myGame from '../index.js';
 
 const description = 'What is the result of the expression?';
 
-const func = async () => {
+const mindGame = async () => {
+  const minNumberForRandomGeneration = 1;
+  const maxNumberForRandomGeneration = 100;
+  const operators = ['+', '-', '*'];
+  const minNumberForOperator = 0;
+  const maxNumberForOperator = operators.length - 1;
   for (let i = 0; i < 3; i += 1) {
-    const arr = ['+', '-', '*'];
-    const randomElement = arr[Math.floor(Math.random() * arr.length)];
-    const selfRandom = randomInteger(1, 100);
-    const selfRandom1 = randomInteger(1, 100);
-    const quest1 = await promptly.prompt(`Question: ${selfRandom1} ${randomElement} ${selfRandom}: `);
-    console.log(`Your answer: ${quest1}`);
-    let result;
+    const randomElement = operators[randomInteger(minNumberForOperator, maxNumberForOperator)];
+    const randomNumberFirst = randomInteger(
+      minNumberForRandomGeneration,
+      maxNumberForRandomGeneration,
+    );
+    const randomNumberSecond = randomInteger(
+      minNumberForRandomGeneration,
+      maxNumberForRandomGeneration,
+    );
+    const answer = await promptly.prompt(
+      `Question: ${randomNumberFirst} ${randomElement} ${randomNumberSecond}: `,
+    );
+    console.log(`Your answer: ${answer}`);
+    let correctAnswer;
     switch (randomElement) {
       case '+':
-        result = Number(selfRandom1) + Number(selfRandom);
-        console.log(result);
+        correctAnswer = Number(randomNumberSecond) + Number(randomNumberFirst);
+        console.log(correctAnswer);
         break;
       case '-':
-        result = Number(selfRandom1) - Number(selfRandom);
+        correctAnswer = Number(randomNumberSecond) - Number(randomNumberFirst);
         break;
       case '*':
-        result = Number(selfRandom1) * Number(selfRandom);
-        console.log(result);
+        correctAnswer = Number(randomNumberSecond) * Number(randomNumberFirst);
+        console.log(correctAnswer);
         break;
       default:
     }
-    if (Number(quest1) === result) {
-      console.log('Correct!');
-    } else if (Number(quest1) !== result) {
-      console.log(`${quest1} is wrong answer ;(. Correct answer was ${result}`);
-      console.log(`Let's try again, ${name}`);
-      return;
-    }
+    // if (Number(answer) === correctAnswer) {
+    //   console.log('Correct!');
+    // } else if (Number(answer) !== correctAnswer) {
+    //   console.log(`${answer} is wrong answer ;(. Correct answer was ${correctAnswer}`);
+    //   console.log(`Let's try again, ${name}`);
+    //   return;
+    // }
   }
 };
-myGame(description, func);
+myGame(description, mindGame);
 export default myGame;
