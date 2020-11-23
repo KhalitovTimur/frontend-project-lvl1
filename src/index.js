@@ -1,20 +1,22 @@
-import promptly from 'promptly';
+import readlineSync from 'readline-sync';
 
-const myGame = async (description, mindGame) => {
+const myGame = (description, mindGame) => {
   console.log('Welcome to the Brain Games!');
-
-  const name = await promptly.prompt('May I have your name?: ');
+  const name = readlineSync.question('May I have your name?:  ');
   console.log(`Hello, ${name}`);
   console.log(description);
-  const dataGame = mindGame();
-  if (Number(answer) === corectAnswer) {
-    console.log('Correct!');
-  } else if (Number(answer) !== corectAnswer) {
-    console.log(
-      `${answer} is wrong answer ;(. Correct answer was ${corectAnswer}`,
-    );
-    console.log(`Let's try again, ${name}`);
-  }
+  const checkCorrectAnswer = (answer, correctAnswer) => {
+    if (Number(answer) === correctAnswer) {
+      console.log('Correct!');
+    } else if (Number(answer) !== correctAnswer) {
+      console.log(
+        `${answer} is wrong answer ;(. Correct answer was ${correctAnswer}`,
+      );
+      console.log(`Let's try again, ${name}`);
+      return false;
+    }
+  };
+  const CongratulationsOnWinningTheGame = `Congratulations, ${name}`;
+  mindGame(checkCorrectAnswer, CongratulationsOnWinningTheGame);
 };
-
 export default myGame;

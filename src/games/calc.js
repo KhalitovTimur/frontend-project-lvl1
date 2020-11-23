@@ -1,10 +1,10 @@
-import promptly from 'promptly';
+import readlineSync from 'readline-sync';
 import randomInteger from '../random.js';
 import myGame from '../index.js';
 
 const description = 'What is the result of the expression?';
 
-const mindGame = async () => {
+const mindGame = (checkCorrectAnswer, CongratulationsOnWinningTheGame) => {
   const minNumberForRandomGeneration = 1;
   const maxNumberForRandomGeneration = 100;
   const operators = ['+', '-', '*'];
@@ -20,8 +20,8 @@ const mindGame = async () => {
       minNumberForRandomGeneration,
       maxNumberForRandomGeneration,
     );
-    const answer = await promptly.prompt(
-      `Question: ${randomNumberFirst} ${randomElement} ${randomNumberSecond}: `,
+    const answer = readlineSync.question(
+      `Question: ${randomNumberSecond} ${randomElement} ${randomNumberFirst}: `,
     );
     console.log(`Your answer: ${answer}`);
     let correctAnswer;
@@ -39,14 +39,10 @@ const mindGame = async () => {
         break;
       default:
     }
-    // if (Number(answer) === correctAnswer) {
-    //   console.log('Correct!');
-    // } else if (Number(answer) !== correctAnswer) {
-    //   console.log(`${answer} is wrong answer ;(. Correct answer was ${correctAnswer}`);
-    //   console.log(`Let's try again, ${name}`);
-    //   return;
-    // }
+    if (checkCorrectAnswer(answer, correctAnswer) === false) {
+      return;
+    }
   }
+  console.log(CongratulationsOnWinningTheGame);
 };
-myGame(description, mindGame);
-export default myGame;
+export default myGame(description, mindGame);
