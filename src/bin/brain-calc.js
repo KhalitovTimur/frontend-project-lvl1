@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-import myGame from '../games/calc.js';
+import myGame from "../games/calc.js";

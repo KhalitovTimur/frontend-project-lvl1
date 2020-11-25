@@ -1,6 +1,6 @@
-import promptly from 'promptly';
-import myGame from '../index.js';
-import randomInteger from '../random.js';
+import readlineSync from "readline-sync";
+import myGame from "../index.js";
+import randomInteger from "../random.js";
 
 const calcNod = (firstNumber, secondNumber) => {
   let result;
@@ -11,37 +11,30 @@ const calcNod = (firstNumber, secondNumber) => {
   }
   return result;
 };
-const description = 'Find the greatest common divisor of given numbers';
+const description = "Find the greatest common divisor of given numbers";
 
-const mindGame = async () => {
+const mindGame = (checkCorrectAnswer, CongratulationsOnWinningTheGame) => {
   const minNumberForRandomGeneration = 1;
   const maxNumberForRandomGeneration = 100;
   for (let i = 0; i < 3; i += 1) {
     const randomNumberFirst = randomInteger(
       minNumberForRandomGeneration,
-      maxNumberForRandomGeneration,
+      maxNumberForRandomGeneration
     );
     const randomNumberSecond = randomInteger(
       minNumberForRandomGeneration,
-      maxNumberForRandomGeneration,
+      maxNumberForRandomGeneration
     );
-    const answer = await promptly.prompt(
-      `Question: ${randomNumberSecond} ${randomNumberFirst}: `,
+    const answer = readlineSync.question(
+      `Question: ${randomNumberSecond} ${randomNumberFirst}: `
     );
     console.log(`Your answer: ${answer}`);
-    const corrctAnswer = calcNod(randomNumberSecond, randomNumberFirst);
-    //   if (Number(answer) === corrctAnswer) {
-    //     console.log('Correct!');
-    //   } else if (Number(answer) !== corrctAnswer) {
-    //     console.log(`${answer} is wrong answer ;(. Correct answer was ${corrctAnswer}`);
-    //     console.log(`Let's try again, ${name}`);
-    //     return;
-    //   }
-    // }
-    // console.log(`Congratulations, ${name}`);
+    const correctAnswer = calcNod(randomNumberSecond, randomNumberFirst);
+    if (checkCorrectAnswer(answer, correctAnswer) === false) {
+      return;
+    }
+    console.log(CongratulationsOnWinningTheGame);
   }
 };
 
-myGame(description, mindGame);
-
-export default myGame;
+export default myGame(description, mindGame);

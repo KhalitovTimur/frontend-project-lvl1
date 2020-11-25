@@ -1,53 +1,59 @@
-import promptly from 'promptly';
-import randomInteger from '../random.js';
-import myGame from '../index.js';
+import readlineSync from "readline-sync";
+import randomInteger from "../random.js";
+import myGame from "../index.js";
 
-const progressionGame = () => {
+const listOfPrimeNumbers = () => {
   const minNumberForRandomGeneration = 1;
   const maxNumberForRandomGeneration = 5;
   const randomNumberFirst = randomInteger(
     minNumberForRandomGeneration,
-    maxNumberForRandomGeneration,
+    maxNumberForRandomGeneration
   );
   const randomNumberSecond = randomInteger(
     minNumberForRandomGeneration,
-    maxNumberForRandomGeneration,
+    maxNumberForRandomGeneration
   );
-  const limit = randomNumberFirst + 10 * randomNumberSecond;
-  const arithmeticProgression = [];
-  for (let i = randomNumberFirst; i < limit; i += randomNumberSecond) {
+  const limitOfTheListOfPrimeNumbers =
+    randomNumberFirst + 10 * randomNumberSecond;
+  const arrayOfListOfPrimeNumbers = [];
+  for (
+    let i = randomNumberFirst;
+    i < limitOfTheListOfPrimeNumbers;
+    i += randomNumberSecond
+  ) {
     const randomNumberString = String(i);
-    // const array = randomNumberString.split(' ');
-    arithmeticProgression.push(randomNumberString);
+    arrayOfListOfPrimeNumbers.push(randomNumberString);
   }
-  arithmeticProgression.splice(randomNumberFirst, 1, '..');
-  return arithmeticProgression.join(' ');
+  arrayOfListOfPrimeNumbers.splice(randomNumberFirst, 1, "..");
+  return arrayOfListOfPrimeNumbers.join(" ");
 };
-const description = 'What number is missing in the progression?';
-const mindGame = async () => {
+const description = "What number is missing in the progression?";
+
+const mindGame = (checkCorrectAnswer, CongratulationsOnWinningTheGame) => {
   for (let i = 0; i < 3; i += 1) {
-    // const fu = getProgression();
-    const answer = await promptly.prompt(`Question: ${progressionGame()}: `);
+    const listOfPrimeNum = listOfPrimeNumbers();
+    const answer = readlineSync.question(`Question: ${listOfPrimeNum}: `);
     console.log(`Your answer: ${answer}`);
-    const restheLineSplitting = progressionGame().split(' ');
-    const returnsTheIndexOfTheSearchedElement = restheLineSplitting.indexOf(
-      '..',
+    const theListOfPrimeNumbersOfPartitionsPerArray = listOfPrimeNum.split(" ");
+    const returnsTheIndexOfTheSearchedElement = theListOfPrimeNumbersOfPartitionsPerArray.indexOf(
+      ".."
     );
-    const firstIndex = restheLineSplitting[returnsTheIndexOfTheSearchedElement - 1];
-    const secondIndex = restheLineSplitting[returnsTheIndexOfTheSearchedElement - 2];
+    const firstIndex =
+      theListOfPrimeNumbersOfPartitionsPerArray[
+        returnsTheIndexOfTheSearchedElement + 1
+      ];
+    const secondIndex =
+      theListOfPrimeNumbersOfPartitionsPerArray[
+        returnsTheIndexOfTheSearchedElement + 2
+      ];
     const theDifferenceOfIndices = Number(firstIndex) - Number(secondIndex);
-    console.log(theDifferenceOfIndices);
     const correctAnswer = Number(firstIndex) + Number(theDifferenceOfIndices);
-    // if (Number(answer) === correctAnswer) {
-    //   console.log('Correct!');
-    // } else if (Number(answer) !== correctAnswer) {
-    //   console.log(`${answer} is wrong answer ;(. Correct answer was ${correctAnswer}`);
-    //   console.log(`Let's try again, ${name}`);
-    //   return;
-    // }
+
+    if (checkCorrectAnswer(answer, correctAnswer) === false) {
+      return;
+    }
+    console.log(CongratulationsOnWinningTheGame);
   }
-  console.log(`Congratulations, ${name}`);
 };
 
-myGame(description, mindGame);
-export default myGame;
+export default myGame(description, mindGame);

@@ -1,4 +1,2 @@
 #!/usr/bin/env node
-import myGame from '../games/prog.js';
-
-myGame();
+import myGame from "../games/prog.js";
